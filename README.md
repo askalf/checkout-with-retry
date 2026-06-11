@@ -55,3 +55,7 @@ Tag `v1` floats to the latest `v1.x.y` release. Pin to a specific tag (`v1.0.0`)
 ## License
 
 MIT — see [LICENSE](./LICENSE).
+
+---
+
+By [Sprayberry Labs](https://sprayberrylabs.com) · part of the [askalf](https://askalf.org) ecosystem.
