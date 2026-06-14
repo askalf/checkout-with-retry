@@ -59,3 +59,6 @@ MIT — see [LICENSE](./LICENSE).
 ---
 
 By [Sprayberry Labs](https://sprayberrylabs.com) · part of the [askalf](https://askalf.org) ecosystem.
+
+---
+Part of **[Own Your Stack](https://github.com/askalf)** — own your AI infrastructure instead of renting it. Built by Thomas Sprayberry.
