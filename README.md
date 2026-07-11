@@ -1,5 +1,7 @@
 # checkout-with-retry
 
+[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/askalf/checkout-with-retry?label=OpenSSF%20Scorecard)](https://scorecard.dev/viewer/?uri=github.com/askalf/checkout-with-retry)
+
 GitHub Action wrapping `actions/checkout` with auto-retry on transient credential failures. Three attempts with exponential backoff (0s / 8s / 20s).
 
 ## Why this exists

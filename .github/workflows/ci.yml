@@ -1,0 +1,30 @@
+name: ci
+
+# Smoke-tests the action against this repo itself: a real checkout through the
+# retry wrapper, into a subdirectory, then assert the tree actually landed.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      # bootstrap checkout so `uses: ./` can resolve the local action
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+
+      - name: Checkout via the retry wrapper
+        uses: ./
+        with:
+          path: smoke
+
+      - name: Assert the checkout landed
+        run: |
+          set -euo pipefail
+          test -f smoke/action.yml
+          echo "self-checkout through the wrapper OK"
