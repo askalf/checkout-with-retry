@@ -44,7 +44,7 @@ runs:
     # pin (v6.0.2) that the rest of dario uses for actions/checkout.
     - name: Checkout (attempt 1)
       id: c1
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       continue-on-error: true
       with:
         ref: ${{ inputs.ref }}
@@ -68,7 +68,7 @@ runs:
     - name: Checkout (attempt 2)
       id: c2
       if: steps.c1.outcome == 'failure'
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       continue-on-error: true
       with:
         ref: ${{ inputs.ref }}
@@ -91,7 +91,7 @@ runs:
 
     - name: Checkout (attempt 3 — final, fail-on-error)
       if: steps.c1.outcome == 'failure' && steps.c2.outcome == 'failure'
-      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd  # v6.0.2
+      uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
       with:
         ref: ${{ inputs.ref }}
         repository: ${{ inputs.repository }}
