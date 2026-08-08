@@ -28,3 +28,23 @@ jobs:
           set -euo pipefail
           test -f smoke/action.yml
           echo "self-checkout through the wrapper OK"
+
+      # Regression case for the sparse-checkout-cone-mode input: it was
+      # silently DROPPED (unknown-input-no-error) before this input existed,
+      # so every caller doing a single-FILE sparse checkout got cone mode
+      # regardless and failed with "is not a directory" on every run
+      # (dario's cc-oauth-health.yml, months of hourly failures). Cone mode
+      # requires directory patterns; this asserts the false path actually
+      # reaches actions/checkout and a bare file pattern works.
+      - name: Checkout a single file (sparse, non-cone)
+        uses: ./
+        with:
+          path: smoke-sparse
+          sparse-checkout: action.yml
+          sparse-checkout-cone-mode: 'false'
+
+      - name: Assert the single-file sparse checkout landed
+        run: |
+          set -euo pipefail
+          test -f smoke-sparse/action.yml
+          echo "single-file sparse checkout (cone-mode: false) OK"

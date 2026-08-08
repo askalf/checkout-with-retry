@@ -32,6 +32,18 @@ inputs:
   sparse-checkout:
     description: 'Sparse-checkout patterns'
     required: false
+  sparse-checkout-cone-mode:
+    description: >
+      Whether to use cone mode for sparse-checkout. Cone mode (the
+      actions/checkout default, 'true') requires each pattern to be a
+      directory — a bare file path like 'scripts/foo.sh' fails with
+      "is not a directory". Set to 'false' for a single-file sparse
+      checkout. Was silently DROPPED before this input existed: callers
+      that passed it got no error, just cone mode regardless (dario's
+      cc-oauth-health.yml hit this for months — every run failed at
+      checkout on `sparse-checkout set scripts/health-verdict.sh`).
+    required: false
+    default: 'true'
   persist-credentials:
     description: 'Whether to persist credentials in git config'
     required: false
@@ -53,6 +65,7 @@ runs:
         fetch-depth: ${{ inputs.fetch-depth }}
         path: ${{ inputs.path }}
         sparse-checkout: ${{ inputs.sparse-checkout }}
+        sparse-checkout-cone-mode: ${{ inputs.sparse-checkout-cone-mode }}
         persist-credentials: ${{ inputs.persist-credentials }}
 
     # Attempt 2 — after 8s backoff. Dodges the credential-provisioning
@@ -77,6 +90,7 @@ runs:
         fetch-depth: ${{ inputs.fetch-depth }}
         path: ${{ inputs.path }}
         sparse-checkout: ${{ inputs.sparse-checkout }}
+        sparse-checkout-cone-mode: ${{ inputs.sparse-checkout-cone-mode }}
         persist-credentials: ${{ inputs.persist-credentials }}
 
     # Attempt 3 — after 20s. If still failing, this is likely a genuine
@@ -99,6 +113,7 @@ runs:
         fetch-depth: ${{ inputs.fetch-depth }}
         path: ${{ inputs.path }}
         sparse-checkout: ${{ inputs.sparse-checkout }}
+        sparse-checkout-cone-mode: ${{ inputs.sparse-checkout-cone-mode }}
         persist-credentials: ${{ inputs.persist-credentials }}
 
     # Tell operator (via run log) which attempt actually succeeded.
