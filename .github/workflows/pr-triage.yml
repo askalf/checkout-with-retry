@@ -23,6 +23,7 @@ jobs:
   triage:
     name: triage
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     permissions:
       contents: read
       pull-requests: write
@@ -51,8 +52,6 @@ jobs:
               /(^|\/)package-lock\.json$/,
               /(^|\/)requirements-.*\.txt$/,
               /(^|\/)go\.sum$/,
-              /^arena\/corpus.*\.json$/,
-              /^arena\/.*-results\.json$/,
             ];
             const files = await github.paginate(github.rest.pulls.listFiles, {
               owner, repo, pull_number: number, per_page: 100,

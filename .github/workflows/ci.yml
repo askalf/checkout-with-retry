@@ -11,9 +11,16 @@ on:
 permissions:
   contents: read
 
+# Cancel a superseded PR run; let push and schedule runs finish so a
+# default-branch result is never dropped.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   smoke:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # bootstrap checkout so `uses: ./` can resolve the local action
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
