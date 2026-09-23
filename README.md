@@ -1,3 +1,5 @@
+<p align="center"><img src=".github/readme/hero.jpg" alt="actions/checkout, with retry. Attempts 1 and 2 fail with a 401, and after waits of 8 and 20 seconds attempt 3 checks out." width="100%"></p>
+
 # checkout-with-retry
 
 [![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/askalf/checkout-with-retry/badge)](https://scorecard.dev/viewer/?uri=github.com/askalf/checkout-with-retry)
