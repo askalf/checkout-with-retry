@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   smoke:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     timeout-minutes: 10
     steps:
       # bootstrap checkout so `uses: ./` can resolve the local action
