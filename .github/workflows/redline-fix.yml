@@ -31,10 +31,11 @@ permissions:
   contents: read
   pull-requests: read
 
-# Queued, not cancelled: forge dispatches one run per review, and a cancelled run leaves no
-# artifact for it to read.
+# Grouped per review, not per PR: GitHub Actions keeps only one running and one pending run per
+# concurrency group, so grouping every review of a PR together would let a third dispatch cancel
+# the second one's pending run before it produces an artifact.
 concurrency:
-  group: fix-${{ github.repository }}-${{ inputs.pr }}
+  group: fix-${{ github.repository }}-${{ inputs.pr }}-${{ inputs.review }}
   cancel-in-progress: false
 
 jobs:
