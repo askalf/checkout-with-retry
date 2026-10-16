@@ -15,7 +15,7 @@ fatal: could not read Username for 'https://github.com': terminal prompts disabl
 ##[error]The process '/usr/bin/git' failed with exit code 128
 ```
 
-This is a credential-provisioning race — `GITHUB_TOKEN` injection into the runner VM can lag behind job start by a few seconds. The same workflow re-run typically passes cleanly.
+This is a credential-provisioning race: `GITHUB_TOKEN` injection into the runner VM can lag behind job start by a few seconds. The same workflow re-run typically passes cleanly.
 
 Origin: extracted from [`askalf/dario`](https://github.com/askalf/dario) on 2026-05-23 after three documented incidents in one day (`actions/checkout` 401s at 11:36 / 12:57 / 13:13 UTC), all transient.
 
@@ -40,7 +40,7 @@ Drop-in replacement for `actions/checkout@*`. All common inputs are forwarded:
 | `sparse-checkout` | yes |
 | `persist-credentials` | yes (default: `true`) |
 
-Inputs not listed above (less commonly used) are not currently surfaced — extend `action.yml` if you need them.
+Inputs not listed above (less commonly used) are not currently surfaced; extend `action.yml` if you need them.
 
 ## Retry policy
 
@@ -58,11 +58,11 @@ Tag `v1` floats to the latest `v1.x.y` release. Pin to a specific tag (`v1.0.0`)
 
 ## License
 
-MIT — see [LICENSE](./LICENSE).
+MIT. See [LICENSE](./LICENSE).
 
 ---
 
 By [Sprayberry Labs](https://sprayberrylabs.com) · part of the [askalf](https://askalf.org) ecosystem.
 
 ---
-Part of **[Own Your Stack](https://github.com/askalf)** — own your AI infrastructure instead of renting it. Built by Thomas Sprayberry.
+Part of **[Own Your Stack](https://github.com/askalf)**: own your AI infrastructure instead of renting it. Built by Thomas Sprayberry.
